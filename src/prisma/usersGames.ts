@@ -1,6 +1,7 @@
-import users, { User } from './users';
+import users from './users';
 import { games } from './games';
 import { Game } from 'src/models/Game';
+import { User } from 'src/models/User';
 
 interface UserGame {
   id: string;

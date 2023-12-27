@@ -1,21 +1,7 @@
-type UserRole = 'user' | 'marketer';
-type Sex = 'male' | 'female';
+import { User } from '../models/User';
 
 const firstNames: string[] = ['John', 'Jane', 'Michael', 'Emily'];
 const lastNames: string[] = ['Smith', 'Johnson', 'Williams', 'Brown'];
-
-export interface User {
-  id: string;
-  first_name: string;
-  last_name: string;
-  userName: string;
-  password: string;
-  email: string;
-  registration_date: Date;
-  age: number;
-  sex: Sex;
-  role: UserRole;
-}
 
 function getRandomDate(startDate: Date): Date {
   const startTimestamp = startDate.getTime();
@@ -36,17 +22,32 @@ for (let i = 0; i < 1000; i++) {
     id: `user${i}`,
     first_name: firstNames[firstNameIndex],
     last_name: lastNames[lastNameIndex],
-    userName: `username${i}`,
+    username: `username${i}`,
     password: `password${i}`,
     email: `user${i}@example.com`,
     registration_date: getRandomDate(new Date(2019, 0, 1)),
-    age: Math.round(normalDistribution(25, 5)),
+    age: Math.max(Math.round(normalDistribution(25, 5)), 12),
     sex: Math.random() < 0.7 ? 'male' : 'female',
     role: 'user',
   };
 
   users.push(user);
 }
+
+const marketer: User = {
+  id: 'marketer',
+  first_name: 'Mark',
+  last_name: 'Smith',
+  username: 'admin',
+  password: 'admin',
+  email: 'myemail@gmail.com',
+  registration_date: new Date(),
+  sex: 'male',
+  age: 30,
+  role: 'marketer',
+};
+
+users.push(marketer);
 
 function normalDistribution(mean: number, std: number): number {
   let u = 0,
